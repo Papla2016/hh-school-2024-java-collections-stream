@@ -3,6 +3,7 @@ package tasks;
 import common.ApiPersonDto;
 import common.Person;
 import common.PersonConverter;
+
 import java.util.List;
 
 /*
@@ -24,6 +25,7 @@ public class Task4 {
   /**
    * Задача 4
    * Конвертация в ApiPersonDto
+   *
    * @param persons персоны для конвертации
    * @return конвертированные персоны
    * @see ApiPersonDto

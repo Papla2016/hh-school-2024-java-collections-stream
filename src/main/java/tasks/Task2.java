@@ -16,16 +16,17 @@ public class Task2 {
   /**
    * Задание 2
    * <p>Объединение персон, сортировка по дате создания и вывод limit штук</p>
+   *
    * @param persons1 первая коллекция для объединения
    * @param persons2 вторая коллекция для объединения
-   * @param limit лимит на вывод
+   * @param limit    лимит на вывод
    * @return первые <code>limit</code> штук объединённых коллекций персон
    */
   public static List<Person> combineAndSortWithLimit(Collection<Person> persons1,
                                                      Collection<Person> persons2,
                                                      int limit) {
     return Stream
-        .concat(persons1.stream(),persons2.stream())
+        .concat(persons1.stream(), persons2.stream())
         .sorted(Comparator.comparing(Person::createdAt))
         .limit(limit)
         .collect(Collectors.toList());

@@ -1,6 +1,7 @@
 package tasks;
 
 import common.Person;
+
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -13,6 +14,7 @@ public class Task3 {
   /**
    * Задача 3
    * <p>Сортировка по фамилии -> имени -> дате создания</p>
+   *
    * @param persons персоны для сортировки
    * @return отсортированные персоны в приоритете:Фамилия -> имя -> дата создания
    */

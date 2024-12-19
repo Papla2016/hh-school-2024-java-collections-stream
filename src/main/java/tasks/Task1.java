@@ -27,13 +27,14 @@ public class Task1 {
    * <p>для потока  personMap - сложность O(m) где m - размер persons</p>
    * <p>для потока результата - сложность O(n) Где n - размер personIds</p>
    * <p>Итоговая сложность - O(m+n) - сумма</p>
+   *
    * @param personIds Id пользователей
    * @return отсортированный лист пользователей
    */
   public List<Person> findOrderedPersons(List<Integer> personIds) {
     Set<Person> persons = personService.findPersons(personIds);
-    Map<Integer,Person> personMap = persons.stream()
-        .collect(Collectors.toMap(Person::id,person -> person));
+    Map<Integer, Person> personMap = persons.stream()
+        .collect(Collectors.toMap(Person::id, person -> person));
     return personIds.stream()
         .map(personMap::get)
         .collect(Collectors.toList());
