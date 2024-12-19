@@ -22,21 +22,11 @@ public class Task8 {
   }
 
   public Set<PersonWithResumes> enrichPersonsWithResumes(Collection<Person> persons) {
-
-    Set<Integer> personIds = persons.stream()
-        .map(Person::id)
-        .collect(Collectors.toSet());// получаем сет id
-    //необходим,т.к. сервис реализует получение резюме коллекцией
-    Map<Integer, Set<Resume>> resumesByPersonId = personService.findResumes(personIds).stream()
-        .collect(Collectors.groupingBy(
-            Resume::personId,
-            Collectors.toSet()
-        ));
+    Set<Resume> resumes = personService.findResumes(persons.stream().map(Person::id).toList());
     return persons.stream()
-        .map(person -> new PersonWithResumes(
-            person,
-            resumesByPersonId.get(person.id())
-        ))
+        .map(person -> new PersonWithResumes(person, resumes.stream()
+            .filter(resume -> Objects.equals(person.id(), resume.personId()))
+            .collect(Collectors.toSet())))
         .collect(Collectors.toSet());
   }
 }

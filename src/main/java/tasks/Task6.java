@@ -22,7 +22,10 @@ public class Task6 {
         .collect(Collectors.toMap(Area::getId, Area::getName)); //создаём дополнительную переменную, чтобы не создавать сложную streamApi конструкцию
     return persons.stream()
         .flatMap(person -> personAreaIds.get(person.id()).stream() //разворачивает set id регионов
-            .map(regionId -> person.firstName() + " - " + areaMap.get(regionId)))  // Склеиваем их с регионами
+            .map(regionId -> formatPersonDescription(person,areaMap,regionId)))  // Склеиваем их с регионами
         .collect(Collectors.toSet());
+  }
+  private static String formatPersonDescription(Person person,Map<Integer,String> areaMap,Integer regionId){
+    return person.firstName() + " - " + areaMap.get(regionId);
   }
 }
